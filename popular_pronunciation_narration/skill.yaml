@@ -1,0 +1,26 @@
+name: popular_pronunciation_narration
+title: Popular pronunciation in narration
+description: Speak technical terms and spelled names the popular way in TTS narration, respelling the input and listening to confirm, instead of reading words as written.
+category: Media
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  measurement:
+    proxy_metric_id: popular_pronunciation_miss_rate
+    success_criterion: No narrated video ships with a technical term read as written when the popular spoken form differs, and every flagged term is respelled in the TTS input and listen-checked before the video is announced ready.
+    window_days: 21
+  evidence_handles:
+  - 1104a7e2
+  - 18706bbf
+  - 6b2081ff
+  - f75a1f87
+  - 7f11179a
+  - 63e1e05a
+  - bc2afa5f
+  - ~/MEMORY.md
+  needs_review: false
+  rationale: On 2026-11-12 the FORTE test video v4 shipped with the voice reading Selic as written, which the user flagged as the wrong popular pronunciation, and the same session kept writing Nigro as negro in five messages after the user spelled N I G R O aloud. A skill search for TTS pronunciation found no covering skill, and the spoken audio skill only covers writing numbers, times, and abbreviations as they should sound. Narration runs daily across the video fronts, so the miss will recur with finance terms. This skill adds the specific respell and listen method, plus the spelled name rule, without touching any managed skill inside its measurement window.
+  review_after: 2026-12-04T05:56:52.916144+00:00
+  reviewed_at: 2026-11-13T05:56:52.916144+00:00
+  run_id: sirun_0ec0c658e35646f385c395547f5c6fc1

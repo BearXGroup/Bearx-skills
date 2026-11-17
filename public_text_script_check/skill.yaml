@@ -1,0 +1,21 @@
+name: public_text_script_check
+title: Check public post text for leaked narration script
+description: Scan every public caption and post text for leaked narration script and speaker labels before publishing and rewrite it from a clean summary when a leak is found.
+category: Communication
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - message:f21a5346
+  - /opt/muse/skills/social-publishing/SKILL.md
+  - MEMORY.md TRAVA ANTI-VAZAMENTO 04/11/2026
+  measurement:
+    proxy_metric_id: public_text_script_leak_rate
+    success_criterion: No public post published during the window contains a speaker label or verbatim narration script, and every flagged caption is rewritten before publishing.
+    window_days: 21
+  needs_review: false
+  rationale: 'On 2026-11-04 the FORTE EP38 posts on Facebook and Instagram went out carrying the full narration script, including speaker labels, and the user flagged the leak from a print. The system social publishing skill requires showing the exact approved text and treats approval as covering only what was seen, but a read of /opt/muse/skills/social-publishing/SKILL.md shows no scan for speaker labels, script markers, or verbatim script passages, so an agent substituting a script file for a caption is not caught by the existing check. This new skill adds that specific pre-publish scan and rewrite step. Restraint applied: only this one proposal is made, the three active managed skills remain untouched inside their measurement windows, and the stale unmanaged FORTE hook file is out of scope for a managed update.'
+  review_after: 2026-11-25T23:31:33.862254+00:00
+  reviewed_at: 2026-11-04T23:31:33.862254+00:00
+  run_id: sirun_1f7fec7b55964b18b30f854d4889bc37

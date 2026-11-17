@@ -1,0 +1,30 @@
+name: browser_account_identity_check
+title: Browser account identity check
+description: Confirm the logged in browser account before any post, delete, or verification claim.
+category: Media
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  measurement:
+    proxy_metric_id: wrong_account_browser_action_rate
+    success_criterion: No post, delete, or verification claim is made from a browser account other than the intended account during the window, and every browser publishing action reports its intended and observed handles.
+    window_days: 21
+  evidence_handles:
+  - 03619bdb
+  - 65cc1c99
+  - 8badc33b
+  - 1bb7f114
+  - 4265beb8
+  - 142a0edb
+  - 8998cdfa
+  - d68dcd43-5124-4279-9b8f-dc01ad152425
+  - 265ae5e2-c12a-4fc2-92ce-1fbc8b07d983
+  - 0ff5bf15-d5ad-4a97-8105-921061fb4ad1
+  - 475c0eb0-f048-4d69-8c4f-78440b89aa31
+  - /opt/muse/skills/social-publishing/SKILL.md
+  needs_review: false
+  rationale: 'Repeated evidence shows browser work acting on the wrong logged in account: a bulletin was posted on the wrong TikTok account and had to be deleted and confirmed in TikTok Studio (03619bdb, 65cc1c99), a later TikTok session was logged in as a different account so no verification appeared and switching was judged not worth dropping the working session (8badc33b), deletion was refused on the wrong account because the vault held only the other account login (1bb7f114), Instagram follower reads and keyword auto messages failed under a security action on the intended account (4265beb8, 142a0edb), and a recheck found the challenged account still stuck on its start screen (8998cdfa). Cron workers also paused repeatedly because instagram.com needed an action only the user can take (d68dcd43-5124-4279-9b8f-dc01ad152425, 265ae5e2-c12a-4fc2-92ce-1fbc8b07d983, 0ff5bf15-d5ad-4a97-8105-921061fb4ad1, 475c0eb0-f048-4d69-8c4f-78440b89aa31). The system social publishing skill says to identify the account and read a post back, but it does not require reading the handle from the profile interface before acting, distinguishing a wrong session from a security challenge, or stating the tradeoff before dropping a working session. This new skill makes that check discoverable to delegated browser work. Restraint applied: the two managed publishing skills were not re-proposed inside their measurement windows, the FORTE hook file is unmanaged and out of scope for an update, and the single unresolved static carousel music case was not turned into a new skill.'
+  review_after: 2026-11-22T23:30:04.178128+00:00
+  reviewed_at: 2026-11-01T23:30:04.178128+00:00
+  run_id: sirun_88a95ae5793b44edba2fd38d9091eac7

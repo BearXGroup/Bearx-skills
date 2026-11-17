@@ -1,0 +1,24 @@
+name: instagram_rate_limit_queue
+title: Instagram rate limit queue
+description: Queue an Instagram post that hits the daily rate limit and repost it only to Instagram after the reset without republishing a destination that already succeeded.
+category: Media
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - assistant-msg-755600c1
+  - assistant-msg-6ee8ff89
+  - assistant-msg-1f41c561
+  - frases-reels-2130
+  - frases-rotacao-15h
+  - frases-rotacao-18h
+  measurement:
+    proxy_metric_id: instagram_429_pending_post_loss_rate
+    success_criterion: No Instagram post pending after a 429 is lost or republished to a destination that already succeeded during the window, and every 429 pending item is reposted only to the failed destination and verified on the live profile.
+    window_days: 21
+  needs_review: false
+  rationale: On 2026-11-07 Instagram returned 429 in three separate Frases slots while Facebook had already posted, the affected cron jobs failed, and the pending Instagram reposts were handled ad hoc in chat. The managed publish_once_guard covers duplicate posts and uncertain retries but has no 429 recognition rule, no per-destination pending queue, and no rule against republishing a destination that already succeeded. This new skill adds that distinct queue method without touching any managed skill inside its measurement window.
+  review_after: 2026-11-29T01:23:01.229487+00:00
+  reviewed_at: 2026-11-08T01:23:01.229487+00:00
+  run_id: sirun_5e7ce8f9fb794a3c8b0584ca493e1504

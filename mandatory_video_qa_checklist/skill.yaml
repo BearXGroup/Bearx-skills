@@ -1,0 +1,28 @@
+name: mandatory_video_qa_checklist
+title: Mandatory video QA checklist
+description: Run the five block video quality gate with measured results before any video upload.
+category: Media
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  measurement:
+    proxy_metric_id: video_uploaded_without_full_qa_rate
+    success_criterion: No video is uploaded without all five blocks measured and passing during the window, and every hiss or density failure is caught before upload.
+    window_days: 21
+  evidence_handles:
+  - message:b4afade9-135c-4a1b-adab-ef73d5c3fa26
+  - message:18e30b3b-121f-43ee-8800-0f6a67350fb5
+  - message:1d0531d4-59f5-4bb5-9215-4883500e55d4
+  - message:assistant-msg-ff966479-5303-4e12-b294-7fcc67b79f0b
+  - message:assistant-msg-9487ac25-e674-ba28-d525-bc5026b2ca45
+  - message:f909f578-e7e9-476a-a2bf-d9364106ba40
+  - message:cd9b2c25-f120-4e74-9fc3-8e390c73e72f
+  - ~/workspace/video-stack/CHECKLIST-VIDEO-OBRIGATORIO.md
+  - ~/workspace/custom-skills/video_sound_preflight/SKILL.md
+  - ~/workspace/custom-skills/video_sound_preflight/qa_audio_gate.py
+  needs_review: false
+  rationale: 'The Paraguay video v1 passed the audio identity gate at 0.954 yet shipped hissing like a radio and slide heavy with too few real photos, and the user flagged both on 2026-11-05. The gate in video_sound_preflight checks identity at 0.90, contamination below 0.05, and audible sound at start, middle, and end, but it measures no hiss in pauses and no visual density. The corrected v2 measured pauses at minus 75 dB against minus 37 dB defective, gate 0.998, 38 of 47 scenes real photo, and element change at most 7.9 seconds. The user then ordered a mandatory five block checklist, which exists only as a workspace file at ~/workspace/video-stack/CHECKLIST-VIDEO-OBRIGATORIO.md and is not discoverable as a skill. This new skill codifies that checklist as a reusable pre-upload gate, complements video_sound_preflight instead of replacing it, and folds in the already ordered 0.5 second voice gap, 8 percent music cap with rotation, element density, real photos plus real data, and hook plus pinned bait. Other findings in this window were left alone: comment duplication and retry handling are already covered by publish_once_guard, which is still inside its measurement window, and the LaFora Instagram promise and the expired approval retry are covered by browser_account_identity_check and publish_once_guard respectively.'
+  review_after: 2026-11-26T23:13:13.648984+00:00
+  reviewed_at: 2026-11-05T23:13:13.648984+00:00
+  run_id: sirun_eba0dd74f68145998ef292c440b5dc17
