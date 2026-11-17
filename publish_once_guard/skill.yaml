@@ -1,0 +1,21 @@
+name: publish_once_guard
+title: Publish once guard
+description: Prevent duplicate social posts from parallel routines and uncertain retries by checking the published record before creating and registering each post at once.
+category: Media
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - 41a32c56-f893-4d58-8d74-399b28671b7d
+  - d0dda5c8-4a02-4f5a-8bda-448791809630
+  - /opt/muse/skills/social-publishing/SKILL.md
+  measurement:
+    proxy_metric_id: duplicate_post_publication_rate
+    success_criterion: No duplicate post from parallel routines or uncertain retries during the window, and every published post is recorded before any other routine creates for the same account and day.
+    window_days: 21
+  needs_review: false
+  rationale: Duplicate posting is the strongest cross-routine failure in this window. Immediate publishing duplicated Frases reels and a scheduler-only check then reported no duplicate, and on 2026-10-30 a one-off LaFora routine and the daily routine fired in parallel and both posted the same dollar theme, drawing a direct user correction that duplication happens always and wastes time going back and forth. The failed cron runs 41a32c56-f893-4d58-8d74-399b28671b7d and d0dda5c8-4a02-4f5a-8bda-448791809630 sit in the same window. The system skill at /opt/muse/skills/social-publishing/SKILL.md covers looking up a post before retrying and tracking destinations separately, but it has no pre-create check of the day's published record, no immediate registration lock, no ban on overlapping one-off routines, no scheduler calendar audit for exactly one entry, and no live-profile-only clean report. The existing standing rules cover specific Frases and LaFora cron bodies, while this skill generalizes the lock protocol to any future scheduled publishing routine. Deterministic handoff-suppression candidates were rejected because they concern internal objective-loop cadence, not a reusable user-facing method, and the silent-video finding is already covered by the active managed skill video_sound_preflight.
+  review_after: 2026-11-20T23:23:35.749231+00:00
+  reviewed_at: 2026-10-30T23:23:35.749231+00:00
+  run_id: sirun_a7401efd8bd8407d8e6ff8e864124172
