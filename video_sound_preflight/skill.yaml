@@ -1,0 +1,22 @@
+name: video_sound_preflight
+title: Video sound preflight
+description: Check that a video carries audible sound before posting it from a computer, and fix a silent file before it goes out.
+category: Media
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - a08122f6-bfb4-4aaa-8ee9-6033c2c7532f
+  - 50bd3220-cdfc-4f10-92b7-2270851a36b4
+  - /opt/muse/skills/social-publishing/SKILL.md
+  - ~/workspace/custom-skills/instagram-craft/SKILL.md
+  measurement:
+    proxy_metric_id: silent_video_publication_rate
+    success_criterion: No video posted from a computer goes out silent during the window, and every silent file found in preflight is fixed before posting.
+    window_days: 21
+  needs_review: false
+  rationale: 'The chunk 1 and 2 handoff records a video that went out mute on three networks because the delivered file carried text on screen with music expected to be added inside the app, while computer posting could not attach that music. The mute posts had to be deleted, one destination was held, and republication was still pending. The system skill at /opt/muse/skills/social-publishing/SKILL.md requires confirming the final asset and reading a post back, but it contains no audio stream check, and ~/workspace/custom-skills/instagram-craft/SKILL.md states it covers writing and research only and does not replace publishing routines. Chunk 3 cron pauses for TikTok and YouTube publishing on the same day show the same publishing path remained fragile. This skill closes the specific gap: probe the final file for audible sound, embed sound into the file before computer posting, and verify each destination separately.'
+  review_after: 2026-11-19T23:41:37.381470+00:00
+  reviewed_at: 2026-10-29T23:41:37.381470+00:00
+  run_id: sirun_170de8bdbfe34ab88820f844fd74cd1d

@@ -1,0 +1,21 @@
+name: recovered_skill_notes
+title: Recovered skill notes
+description: Local skill notes preserved from the previous layout and awaiting review.
+category: Learning and customization
+include_in_prompt: true
+skill_improvement:
+  managed: true
+  status: retired
+  evidence_handles:
+  - 67adf91e7d153c68909ad2f7d166c1f6b24a86efdcfe476d9147f95c72298cf2
+  - sirun_aecffeb021694d
+  - sirun_240a51ab538d475d9a20b9fa53871100
+  measurement:
+    proxy_metric_id: recovered_notes_await_review
+    success_criterion: recovered_skill_notes carries status retired, is absent from active skill discovery, and the audit does not wake for recovered_notes_await_review during the window.
+    window_days: 14
+  needs_review: false
+  rationale: 'The audit woke on recovered_notes_await_review. Inventory lists recovered_skill_notes at ~/workspace/custom-skills/recovered-skill-notes/ with revision 67adf91e7d153c68909ad2f7d166c1f6b24a86efdcfe476d9147f95c72298cf2 and learning marked managed/needs_review. I read skill.yaml, SKILL.md, and all 21 files under references/. SKILL.md is only recovery boilerplate: ''These files preserve earlier local learning. Some instructions may be unverified or out of date.'' plus ''Use `muse.connector_search` to find current connector docs for these notes.'' Every reference file is a daily skill-improvement run projection stating ''No skill/tool surface changed in this run.'' There is no reusable method to publish or merge, and nothing to correct against a system skill. Retiring the entry at its inventory revision removes it from active discovery and resolves the recovered-notes review wake.'
+  review_after: 2026-10-28T05:41:17.658457+00:00
+  reviewed_at: 2026-10-14T05:41:17.658457+00:00
+  run_id: sirun_a14aedb599a7414f8800ac4a34aa4c80

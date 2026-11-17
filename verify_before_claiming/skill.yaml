@@ -1,0 +1,26 @@
+name: verify_before_claiming
+title: Verify before claiming
+description: Check the source record before stating a fact or a status, and correct the record at once when a claim turns out wrong.
+category: Work and knowledge
+include_in_prompt: true
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - 9cc4539e-d4cf-4385-bf1a-5c0d824f431f
+  - assistant-msg-4757e3d1-a90a-4301-acf7-d9d65302a04d
+  - assistant-msg-969ece9e
+  - assistant-msg-73dc5b70
+  - assistant-msg-2097299a
+  - assistant-msg-e3477b49
+  - assistant-msg-80feb408
+  - 51a93777
+  measurement:
+    proxy_metric_id: objective_success_rate
+    success_criterion: No later correction reverses a stated policy, account, file, or completion claim during the window, and every status claim names the check that confirmed it.
+    window_days: 21
+  rationale: 'The same failure recurs across unrelated tasks in two days: a policy fact asserted before the policy was checked (9cc4539e), a bank file called a checking account before import showed it was savings (assistant-msg-4757e3d1), a download called complete before the login failed (assistant-msg-969ece9e vs assistant-msg-73dc5b70), and jobs called running before the browser answered (assistant-msg-2097299a, assistant-msg-e3477b49). Each reversal drew a user correction and a redo. The existing publish_once_guard covers social posts only, not facts about policies, accounts, files, or job status, and no managed skill covers this general check-before-claim method.'
+  review_after: 2026-12-06T03:55:08.553337+00:00
+  reviewed_at: 2026-11-15T03:55:08.553337+00:00
+  needs_review: false
+  run_id: sirun_e2e7d7d3e6e84e92a3ddc46483d51aff
